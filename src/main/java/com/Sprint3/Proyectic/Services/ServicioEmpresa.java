@@ -11,17 +11,19 @@ import java.util.List;
 @Service
 public class ServicioEmpresa {
 
-     private RepoEmpresa repositorio;
+    private RepoEmpresa repositorio;
 
-     public ServicioEmpresa(RepoEmpresa repositorio){
-         this.repositorio=repositorio;
-     }
-     public List<Empresa> getRepositorio(){
-         return this.repositorio.findAll();
-     }
+    public ServicioEmpresa(RepoEmpresa repositorio) {
+        this.repositorio = repositorio;
+    }
 
-     public Empresa nuevoRegistro(Empresa emp1){
-         return this.repositorio.save(emp1);
-     }
+    public List<Empresa> getRepositorio() {
+        return this.repositorio.findAll();
+    }
+
+    public Empresa nuevoRegistro(Empresa emp1) {
+        return this.repositorio.save(emp1);
+    }
+
 
 }
