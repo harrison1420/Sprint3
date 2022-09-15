@@ -19,11 +19,11 @@ public class ControlEmpresa {
         this.servicioEmpresa1 = servicioEmpresa1;
 
   }
-    @GetMapping("/informacion")
+    @GetMapping("/empresa")
     public List<Empresa> informacion(){
         return this.servicioEmpresa1.getRepositorio();
   }
-   @PostMapping("/informacion")
+   @PostMapping("/empresa")
     public Empresa CrearEmpresa(@RequestBody Empresa emp){
         return this.servicioEmpresa1.nuevoRegistro(emp);
    }

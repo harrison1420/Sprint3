@@ -1,21 +1,26 @@
 package com.Sprint3.Proyectic.Services;
 
 import com.Sprint3.Proyectic.Entities.Empleado;
+import com.Sprint3.Proyectic.Repositories.RepoEmpleado;
+
+import java.util.List;
 
 public class ServicioEmpleado {
 
+    private RepoEmpleado repositorio;
 
-    Empleado empleado1;
+    public ServicioEmpleado(RepoEmpleado repositorio) {
+        this.repositorio = repositorio;
+    }
 
-    public ServicioEmpleado(){
+    public List<Empleado> getRepositorio() {
+        return this.repositorio.findAll();
+    }
 
-        this.empleado1 = new Empleado("harrison","nacho2282@hotmail.com",
-                "proyectic","vendedor",null);
+    public  Empleado nuevoEmpleado (Empleado emp1) {
+        return this.repositorio.save(emp1);
+    }
 
 
     }
-    public Empleado getEmpleado(){
-        return this.empleado1;
 
-    }
-}
