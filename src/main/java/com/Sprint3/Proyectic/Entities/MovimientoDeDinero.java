@@ -2,46 +2,60 @@ package com.Sprint3.Proyectic.Entities;
 
 import javax.persistence.*;
 
+
 @Entity
-@Table(name = "MovimientoDeDinero")
+@Table(name = "movimientoDeDinero")
 public class MovimientoDeDinero {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    @Column(name = "monto")
-    private double Monto;
-    @Column(name = "concepto")
-    private String Concepto;
+    private long monto;
 
-    public MovimientoDeDinero(){
+    private String concepto;
 
+    @ManyToOne
+    @JoinColumn(name = "empleado_id")
+    private Empleado usuario;
+
+    public MovimientoDeDinero() {
     }
 
-    public MovimientoDeDinero(double monto, String concepto) {
-        Monto = monto;
-        Concepto = concepto;
+    public MovimientoDeDinero(long monto, String concepto, Empleado usuario) {
+        this.monto = monto;
+        this.concepto = concepto;
+        this.usuario = usuario;
     }
 
-    public double getMonto() {
-        return Monto;
+    public int getId() {
+        return id;
     }
 
-    public void setMonto(double monto) {
-        Monto = monto;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public long getMonto() {
+        return monto;
+    }
+
+    public void setMonto(long monto) {
+        this.monto = monto;
     }
 
     public String getConcepto() {
-        return Concepto;
+        return concepto;
     }
 
     public void setConcepto(String concepto) {
-        Concepto = concepto;
+        this.concepto = concepto;
     }
-    public double CrearMonto(){
-        return -1;
+
+    public Empleado getUsuario() {
+        return usuario;
     }
-    public String Encargado(){
-        return "-1";
+
+    public void setUsuario(Empleado usuario) {
+        this.usuario = usuario;
     }
 }

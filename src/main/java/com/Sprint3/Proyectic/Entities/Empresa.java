@@ -2,36 +2,36 @@ package com.Sprint3.Proyectic.Entities;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "empresa")
 public class Empresa {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long Id;
-
-    @Column(name = "nombre")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String nombre;
-    @Column(name = "direccion")
     private String direccion;
-    @Column(name = "telefono")
-    private int telefono;
-    @Column(name = "nit")
-    private String nit;
+    private String telefono;
+    private String NIT;
 
-    @Transient
-    Empleado empleado1;
 
-    public Empresa(){
 
+    public Empresa() {
     }
 
-    public Empresa(String nombre, String direccion, int telefono, String nit, Empleado empleado1) {
+    public Empresa(String nombre, String direccion, String telefono, String NIT) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.nit = nit;
-        this.empleado1 = empleado1;
+        this.NIT = NIT;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -50,38 +50,21 @@ public class Empresa {
         this.direccion = direccion;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
-    public String getNit() {
-        return nit;
+    public String getNIT() {
+        return NIT;
     }
 
-    public void setNit(String nit) {
-        this.nit = nit;
-    }
-
-    public Empleado getEmpleado1() {
-        return empleado1;
-    }
-
-    public void setEmpleado1(Empleado empleado1) {
-        this.empleado1 = empleado1;
-    }
-
-    @Override
-    public String toString() {
-        return "Empresa{" +
-                "nombre='" + nombre + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", telefono=" + telefono +
-                ", nit='" + nit + '\'' +
-                ", empleado1=" + this.empleado1 +
-                '}';
+    public void setNIT(String NIT) {
+        this.NIT = NIT;
     }
 }
+
+

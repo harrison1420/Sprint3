@@ -6,33 +6,31 @@ import javax.persistence.*;
 @Entity
 @Table(name = "empleado")
 public class Empleado {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long Id;
-    @Column(name = "nombre")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String nombre;
-    @Column(name = "correo")
     private String correo;
-    @Column(name = "EmpresaEmpleadoPertenece")
-    private String EmpresaEmpleadoPertenece;
-    @Column(name = "RolEmpleado")
-    private String RolEmpleado;
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresa;
+    private String rol;
 
-    @Transient
-    MovimientoDeDinero primerMovimiento ;
-
-    public Empleado(){
-
+    public Empleado() {
     }
-
-    public Empleado(String nombre, String correo, String empresaEmpleadoPertenece,
-                    String rolEmpleado, MovimientoDeDinero primerMovimiento) {
+    public Empleado(String nombre, String correo, Empresa empresa, String rol) {
         this.nombre = nombre;
         this.correo = correo;
-        EmpresaEmpleadoPertenece = empresaEmpleadoPertenece;
-        RolEmpleado = rolEmpleado;
-        this.primerMovimiento = primerMovimiento;
+        this.empresa = empresa;
+        this .rol = rol;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -51,38 +49,22 @@ public class Empleado {
         this.correo = correo;
     }
 
-    public String getEmpresaEmpleadoPertenece() {
-        return EmpresaEmpleadoPertenece;
+    public String getRol() {
+        return rol;
     }
 
-    public void setEmpresaEmpleadoPertenece(String empresaEmpleadoPertenece) {
-        EmpresaEmpleadoPertenece = empresaEmpleadoPertenece;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
-    public String getRolEmpleado() {
-        return RolEmpleado;
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setRolEmpleado(String rolEmpleado) {
-        RolEmpleado = rolEmpleado;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
-    public MovimientoDeDinero getPrimerMovimiento() {
-        return primerMovimiento;
-    }
 
-    public void setPrimerMovimiento(MovimientoDeDinero primerMovimiento) {
-        this.primerMovimiento = primerMovimiento;
-    }
-
-    @Override
-    public String toString() {
-        return "Empleado{" +
-                "nombre='" + nombre + '\'' +
-                ", correo='" + correo + '\'' +
-                ", EmpresaEmpleadoPertenece='" + EmpresaEmpleadoPertenece + '\'' +
-                ", RolEmpleado='" + RolEmpleado + '\'' +
-                ", primerMovimiento=" + this.primerMovimiento +
-                '}';
-    }
 }
+

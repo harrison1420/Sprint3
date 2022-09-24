@@ -3,27 +3,47 @@ package com.Sprint3.Proyectic.Services;
 
 import com.Sprint3.Proyectic.Entities.Empleado;
 import com.Sprint3.Proyectic.Entities.Empresa;
+import com.Sprint3.Proyectic.Services.ServicioEmpresa;
 import com.Sprint3.Proyectic.Repositories.RepoEmpresa;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ServicioEmpresa {
 
-    private RepoEmpresa repositorio;
+    @Autowired
+    RepoEmpresa empresaRepository;
 
-    public ServicioEmpresa(RepoEmpresa repositorio) {
-        this.repositorio = repositorio;
+
+    public List<Empresa> getAllEmpresas() {
+        List<Empresa> empresaList = new ArrayList<>();
+        empresaRepository.findAll().forEach(empresa -> empresaList.add(empresa));
+        return empresaList;
     }
 
-    public List<Empresa> getRepositorio() {
-        return this.repositorio.findAll();
+
+    public Empresa getEmpresaById(Integer id) {
+
+        return  empresaRepository.findById(id).get();
     }
 
-    public Empresa nuevoRegistro(Empresa emp1) {
-        return this.repositorio.save(emp1);
+    public Empresa saveOrUpdateEmpresa(Empresa empresa) {
+        Empresa emp=empresaRepository.save(empresa);
+        return emp;
     }
 
+
+    public boolean deleteEmpresa(Integer id) {
+        empresaRepository.deleteById(id);
+        if(empresaRepository.findById(id)==null) {
+            return true;
+        }
+        return false;
+    }
 
 }
